@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-blue-500 to-teal-400 text-white py-24">
+    <section class="hero bg-gradient-to-r from-blue-500 to-teal-400 text-white py-24">
       <div class="container mx-auto text-center">
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
           Velkommen til Yggoo
@@ -80,9 +80,11 @@
 </script>
 
 <style scoped>
-/* Custom styling for the hero section */
-section {
-  background-size: cover;
+.hero {
+  background-image: url("@/assets/images/two.jpg");
+  background-repeat: no-repeat;
+  background-color: rgb(122, 141, 141);
   background-position: center;
+  height: 500px;
 }
 </style>
