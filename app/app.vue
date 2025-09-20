@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <!-- Markup shared across all pages, ex: NavBar -->
+  <UApp>
     <NuxtPage />
-  </div>
+  </UApp>
 </template>
