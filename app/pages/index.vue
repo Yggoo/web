@@ -10,7 +10,7 @@
           Vi bygger noget fantastisk her. Mere kommer snart!
         </p>
         <ui-button class="px-8 py-3 text-lg bg-white text-blue-600 hover:bg-gray-100">
-          Få mere at vide
+          Kontakt Hedvig for yderligere infomation, samt bestilling og betaling.
         </ui-button>
       </div>
     </section>
@@ -19,7 +19,7 @@
     <section class="py-16">
       <div class="container mx-auto text-center">
         <h2 class="text-3xl font-semibold text-gray-800 mb-8">
-          Kommer snart!
+          Yggoo står for: Ypperlige Gode Gaver Omsorgsfuldt Opfundet!
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Card 1 -->
@@ -28,10 +28,11 @@
               <h3 class="text-2xl font-semibold text-gray-800 mb-4">
                 Ting 1
               </h3>
+              <NuxtImg src="/images/products/01.png" />
               <p class="text-gray-600">
                 Tilfældig tekst for ting 1. Der kommer snart flere detaljer.
               </p>
-              <ui-button class="mt-6 w-full text-center text-blue-600">Flere detaljer</ui-button>
+              <ui-button class="mt-6 w-full text-center text-blue-600">Koster 5 kr</ui-button>
             </div>
           </ui-card>
 
@@ -41,10 +42,11 @@
               <h3 class="text-2xl font-semibold text-gray-800 mb-4">
                 Ting 2
               </h3>
+              <NuxtImg src="/images/products/02.png" />
               <p class="text-gray-600">
                 Tilfældig tekst for ting 2. Der kommer snart flere detaljer.
               </p>
-              <ui-button class="mt-6 w-full text-center text-blue-600">Flere detaljer</ui-button>
+              <ui-button class="mt-6 w-full text-center text-blue-600">Koster 5 kr</ui-button>
             </div>
           </ui-card>
 
@@ -54,10 +56,67 @@
               <h3 class="text-2xl font-semibold text-gray-800 mb-4">
                 Ting 3
               </h3>
+              <NuxtImg src="/images/products/03.png" />
               <p class="text-gray-600">
                 Tilfældig tekst for ting 3. Der kommer snart flere detaljer.
               </p>
-              <ui-button class="mt-6 w-full text-center text-blue-600">Flere detaljer</ui-button>
+              <ui-button class="mt-6 w-full text-center text-blue-600">Koster 5 kr</ui-button>
+            </div>
+          </ui-card>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Card 4 -->
+          <ui-card class="w-full max-w-sm mx-auto bg-white shadow-lg">
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+                Ting 4
+              </h3>
+              <NuxtImg src="/images/products/04.png" />
+              <p class="text-gray-600">
+                Tilfældig tekst for ting . Der kommer snart flere detaljer.
+              </p>
+              <ui-button class="mt-6 w-full text-center text-blue-600">Koster 5 kr</ui-button>
+            </div>
+          </ui-card>
+          <!-- Card 5 -->
+          <ui-card class="w-full max-w-sm mx-auto bg-white shadow-lg">
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+                Ting 5
+              </h3>
+              <NuxtImg src="/images/products/05.png" />
+              <p class="text-gray-600">
+                Tilfældig tekst for ting . Der kommer snart flere detaljer.
+              </p>
+              <ui-button class="mt-6 w-full text-center text-blue-600">Koster 5 kr</ui-button>
+            </div>
+          </ui-card>
+          <!-- Card 6 -->
+          <ui-card class="w-full max-w-sm mx-auto bg-white shadow-lg">
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+                Ting 6
+              </h3>
+              <NuxtImg src="/images/products/06.png" />
+              <p class="text-gray-600">
+                Tilfældig tekst for ting . Der kommer snart flere detaljer.
+              </p>
+              <ui-button class="mt-6 w-full text-center text-blue-600">Koster 10 kr</ui-button>
+            </div>
+          </ui-card>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> 
+          <!-- Card 7 -->
+          <ui-card class="w-full max-w-sm mx-auto bg-white shadow-lg">
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold text-gray-800 mb-4">
+                Ting 7
+              </h3>
+              <NuxtImg src="/images/products/07.png" />
+              <p class="text-gray-600">
+                Tilfældig tekst for ting . Der kommer snart flere detaljer.
+              </p>
+              <ui-button class="mt-6 w-full text-center text-blue-600">Koster 10 kr</ui-button>
             </div>
           </ui-card>
         </div>
