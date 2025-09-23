@@ -5,13 +5,7 @@
       <div class="container mx-auto text-center">
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
           Velkommen til Yggoo
-        </h1>
-        <p class="text-xl md:text-2xl mb-8">
-          Vi bygger noget fantastisk her. Mere kommer snart!
-        </p>
-        <ui-button class="px-8 py-3 text-lg bg-white text-blue-600 hover:bg-gray-100">
-          Kontakt Hedvig for yderligere infomation, samt bestilling og betaling.
-        </ui-button>
+        </h1>       
       </div>
     </section>
 
@@ -20,7 +14,11 @@
       <div class="container mx-auto text-center">
         <h2 class="text-3xl font-semibold text-gray-800 mb-8">
           Yggoo står for: Ypperlige Gode Gaver Omsorgsfuldt Opfundet!
+              
         </h2>
+        <h3 class="font-semibold text-gray-800 mb-8">
+          Kontakt <UButton to="mailto:hedvig@yggoo.dk">Hedvig</UButton> for yderligere infomation, samt bestilling og betaling.
+        </h3>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Card 1 -->
           <ui-card class="w-full max-w-sm mx-auto bg-white shadow-lg">
@@ -145,5 +143,9 @@
   background-color: rgb(122, 141, 141);
   background-position: center;
   height: 500px;
+}
+
+.contact {
+  color: black;
 }
 </style>
