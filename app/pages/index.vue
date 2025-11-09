@@ -1,5 +1,20 @@
 <template>
-  <div class="min-h-screen bg-red-50">
+  <div class="min-h-screen bg-red-50 relative">
+    <!-- Snow Animation -->
+    <div class="snowflakes" aria-hidden="true">
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❆</div>
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❆</div>
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❆</div>
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❆</div>
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❆</div>
+      <div class="snowflake">❅</div>
+      <div class="snowflake">❆</div>
+    </div>
     <!-- Hero Section -->
     <section class="hero bg-gradient-to-r from-red-600 to-green-600 text-white py-24">
       <div class="container mx-auto text-center">
@@ -241,5 +256,117 @@
 
 .contact {
   color: black;
+}
+
+/* Snow Animation */
+.snowflakes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.snowflake {
+  position: absolute;
+  top: -10%;
+  color: white;
+  font-size: 1.5em;
+  opacity: 0.8;
+  animation: fall linear infinite;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+.snowflake:nth-child(1) {
+  left: 10%;
+  animation-duration: 10s;
+  animation-delay: 0s;
+  font-size: 1.2em;
+}
+
+.snowflake:nth-child(2) {
+  left: 20%;
+  animation-duration: 12s;
+  animation-delay: 1s;
+  font-size: 1.8em;
+}
+
+.snowflake:nth-child(3) {
+  left: 30%;
+  animation-duration: 8s;
+  animation-delay: 2s;
+  font-size: 1.5em;
+}
+
+.snowflake:nth-child(4) {
+  left: 40%;
+  animation-duration: 14s;
+  animation-delay: 0.5s;
+  font-size: 2em;
+}
+
+.snowflake:nth-child(5) {
+  left: 50%;
+  animation-duration: 11s;
+  animation-delay: 1.5s;
+  font-size: 1.3em;
+}
+
+.snowflake:nth-child(6) {
+  left: 60%;
+  animation-duration: 9s;
+  animation-delay: 3s;
+  font-size: 1.7em;
+}
+
+.snowflake:nth-child(7) {
+  left: 70%;
+  animation-duration: 13s;
+  animation-delay: 0s;
+  font-size: 1.4em;
+}
+
+.snowflake:nth-child(8) {
+  left: 80%;
+  animation-duration: 10s;
+  animation-delay: 2.5s;
+  font-size: 1.6em;
+}
+
+.snowflake:nth-child(9) {
+  left: 90%;
+  animation-duration: 12s;
+  animation-delay: 1s;
+  font-size: 1.9em;
+}
+
+.snowflake:nth-child(10) {
+  left: 15%;
+  animation-duration: 11s;
+  animation-delay: 3.5s;
+  font-size: 1.1em;
+}
+
+.snowflake:nth-child(11) {
+  left: 65%;
+  animation-duration: 9s;
+  animation-delay: 2s;
+  font-size: 2.1em;
+}
+
+.snowflake:nth-child(12) {
+  left: 85%;
+  animation-duration: 13s;
+  animation-delay: 0.5s;
+  font-size: 1.4em;
 }
 </style>
