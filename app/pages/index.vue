@@ -20,91 +20,173 @@
           Kontakt <UButton to="mailto:hedvig@yggoo.dk">Hedvig</UButton> for yderligere infomation, samt bestilling og
           betaling.
         </h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <!-- Card 1 -->
-          <ui-card class="festive-card w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+          <div class="festive-card w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300 rounded-lg overflow-hidden">
             <div class="p-6">
               <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
                 <span class="text-red-600">❄</span> Ting 1 <span class="text-red-600">❄</span>
               </h3>
-              <NuxtImg src="/images/products/01.png" class="rounded-lg mb-4" />
-              <p class="text-gray-700">
-                Tilfældig tekst for ting 1. Der kommer snart flere detaljer.
+              <img src="/images/products/01.png" class="rounded-lg mb-4" />
+              <p class="text-gray-700 mb-4">
+                Tilfäldig tekst for ting 1. Der kommer snart flere detaljer.
               </p>
-              <ui-button class="mt-6 w-full text-center bg-gradient-to-r from-red-600 to-green-600 text-white font-bold py-3 rounded-lg hover:from-red-700 hover:to-green-700 transition-all">Koster 5 kr</ui-button>
+              <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 5 kr</UButton>
             </div>
-          </ui-card>
+          </div>
 
           <!-- Card 2 -->
-          <ui-card class="festive-card w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+          <div class="festive-card rounded-lg overflow-hidden w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
             <div class="p-6">
               <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
                 <span class="text-red-600">❄</span> Ting 2 <span class="text-red-600">❄</span>
               </h3>
-              <NuxtImg src="/images/products/02.png" class="rounded-lg mb-4" />
-              <p class="text-gray-700">
+              <img src="/images/products/02.png" class="rounded-lg mb-4" />
+              <p class="text-gray-700 mb-4">
                 Tilfældig tekst for ting 2. Der kommer snart flere detaljer.
               </p>
-              <ui-button class="mt-6 w-full text-center bg-gradient-to-r from-red-600 to-green-600 text-white font-bold py-3 rounded-lg hover:from-red-700 hover:to-green-700 transition-all">Koster 5 kr</ui-button>
+              <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 5 kr</UButton>
             </div>
-          </ui-card>
+          </div>
 
           <!-- Card 3 -->
-          <ui-card class="festive-card w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+          <div class="festive-card rounded-lg overflow-hidden w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
             <div class="p-6">
               <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
                 <span class="text-red-600">❄</span> Ting 3 <span class="text-red-600">❄</span>
               </h3>
-              <NuxtImg src="/images/products/03.png" class="rounded-lg mb-4" />
-              <p class="text-gray-700">
+              <img src="/images/products/03.png" class="rounded-lg mb-4" />
+              <p class="text-gray-700 mb-4">
                 Tilfældig tekst for ting 3. Der kommer snart flere detaljer.
               </p>
-              <ui-button class="mt-6 w-full text-center bg-gradient-to-r from-red-600 to-green-600 text-white font-bold py-3 rounded-lg hover:from-red-700 hover:to-green-700 transition-all">Koster 5 kr</ui-button>
+              <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 5 kr</UButton>
             </div>
-          </ui-card>
+          </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <!-- Card 4 -->
-          <ui-card class="festive-card w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+          <div class="festive-card rounded-lg overflow-hidden w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
             <div class="p-6">
               <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
                 <span class="text-red-600">❄</span> Ting 4 <span class="text-red-600">❄</span>
               </h3>
-              <NuxtImg src="/images/products/04.png" class="rounded-lg mb-4" />
-              <p class="text-gray-700">
+              <img src="/images/products/04.png" class="rounded-lg mb-4" />
+              <p class="text-gray-700 mb-4">
                 Tilfældig tekst for ting . Der kommer snart flere detaljer.
               </p>
-              <ui-button class="mt-6 w-full text-center bg-gradient-to-r from-red-600 to-green-600 text-white font-bold py-3 rounded-lg hover:from-red-700 hover:to-green-700 transition-all">Koster 5 kr</ui-button>
+              <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 5 kr</UButton>
             </div>
-          </ui-card>
+          </div>
           <!-- Card 5 -->
-          <ui-card class="festive-card w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+          <div class="festive-card rounded-lg overflow-hidden w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
             <div class="p-6">
               <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
                 <span class="text-red-600">❄</span> Ting 5 <span class="text-red-600">❄</span>
               </h3>
-              <NuxtImg src="/images/products/05.png" class="rounded-lg mb-4" />
-              <p class="text-gray-700">
+              <img src="/images/products/05.png" class="rounded-lg mb-4" />
+              <p class="text-gray-700 mb-4">
                 Tilfældig tekst for ting . Der kommer snart flere detaljer.
               </p>
-              <ui-button class="mt-6 w-full text-center bg-gradient-to-r from-red-600 to-green-600 text-white font-bold py-3 rounded-lg hover:from-red-700 hover:to-green-700 transition-all">Koster 5 kr</ui-button>
+              <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 5 kr</UButton>
             </div>
-          </ui-card>        
+          </div>        
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
         <!-- Card 7 -->
-        <ui-card class="festive-card w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+        <div class="festive-card rounded-lg overflow-hidden w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
           <div class="p-6">
             <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
               <span class="text-red-600">❄</span> Ting 7 <span class="text-red-600">❄</span>
             </h3>
-            <NuxtImg src="/images/products/07.png" class="rounded-lg mb-4" />
-            <p class="text-gray-700">
+            <img src="/images/products/07.png" class="rounded-lg mb-4" />
+            <p class="text-gray-700 mb-4">
               Tilfældig tekst for ting . Der kommer snart flere detaljer.
             </p>
-            <ui-button class="mt-6 w-full text-center bg-gradient-to-r from-red-600 to-green-600 text-white font-bold py-3 rounded-lg hover:from-red-700 hover:to-green-700 transition-all">Koster 10 kr</ui-button>
+            <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 10 kr</UButton>
           </div>
-        </ui-card>
+        </div>
+        <!-- Card 8 - Game -->
+        <div class="festive-card rounded-lg overflow-hidden w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
+              <span class="text-red-600">❄</span> Game 1 <span class="text-red-600">❄</span>
+            </h3>
+            <img src="/images/products/game1.png" class="rounded-lg mb-4" />
+            <p class="text-gray-700 mb-4">
+              Tilfældig tekst for game. Der kommer snart flere detaljer.
+            </p>
+            <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 69 kr</UButton>
+          </div>
+        </div>
+        <!-- Card 9 - Ring 1 -->
+        <div class="festive-card rounded-lg overflow-hidden w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
+              <span class="text-red-600">❄</span> Ring 1 <span class="text-red-600">❄</span>
+            </h3>
+            <img src="/images/products/ring1.png" class="rounded-lg mb-4" />
+            <p class="text-gray-700 mb-4">
+              Tilfældig tekst for ring. Der kommer snart flere detaljer.
+            </p>
+            <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 35 kr</UButton>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <!-- Card 10 - Ring 2 -->
+        <div class="festive-card rounded-lg overflow-hidden w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
+              <span class="text-red-600">❄</span> Ring 2 <span class="text-red-600">❄</span>
+            </h3>
+            <img src="/images/products/ring2.png" class="rounded-lg mb-4" />
+            <p class="text-gray-700 mb-4">
+              Tilfældig tekst for ring. Der kommer snart flere detaljer.
+            </p>
+            <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 35 kr</UButton>
+          </div>
+        </div>
+        <!-- Card 11 - Ring 3 -->
+        <div class="festive-card rounded-lg overflow-hidden w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
+              <span class="text-red-600">❄</span> Ring 3 <span class="text-red-600">❄</span>
+            </h3>
+            <img src="/images/products/ring3.png" class="rounded-lg mb-4" />
+            <p class="text-gray-700 mb-4">
+              Tilfældig tekst for ring. Der kommer snart flere detaljer.
+            </p>
+            <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 35 kr</UButton>
+          </div>
+        </div>
+        <!-- Card 12 - Ring 4 -->
+        <div class="festive-card rounded-lg overflow-hidden w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
+              <span class="text-red-600">❄</span> Ring 4 <span class="text-red-600">❄</span>
+            </h3>
+            <img src="/images/products/ring4.png" class="rounded-lg mb-4" />
+            <p class="text-gray-700 mb-4">
+              Tilfældig tekst for ring. Der kommer snart flere detaljer.
+            </p>
+            <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 35 kr</UButton>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <!-- Card 13 - Ring 5 -->
+        <div class="festive-card rounded-lg overflow-hidden w-full max-w-sm mx-auto bg-gradient-to-br from-white to-green-50 shadow-2xl border-4 border-red-300 hover:shadow-red-200 hover:scale-105 transition-all duration-300">
+          <div class="p-6">
+            <h3 class="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
+              <span class="text-red-600">❄</span> Ring 5 <span class="text-red-600">❄</span>
+            </h3>
+            <img src="/images/products/ring5.png" class="rounded-lg mb-4" />
+            <p class="text-gray-700 mb-4">
+              Tilfældig tekst for ring. Der kommer snart flere detaljer.
+            </p>
+            <UButton class="mt-6 w-full text-center bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition-all">Koster 35 kr</UButton>
+          </div>
+        </div>
       </div>
   </div>
   </section>
