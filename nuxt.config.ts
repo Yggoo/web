@@ -9,5 +9,17 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/ui'
   ],
-  css: ['~/assets/css/main.css']
+  css: ['~/assets/css/main.css'],
+  
+  vite: {
+    server: {
+      hmr: {
+        clientPort: 443
+      }
+    }
+  },
+  
+  devServer: {
+    host: '0.0.0.0'
+  }
 })
