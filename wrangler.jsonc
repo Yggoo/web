@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "d1_databases": [
+    { "binding": "DB", "database_name": "yggoo", "database_id": "34f75d17-eafa-4bb1-a6a0-caa30cc751f5" }
+  ],
+  "r2_buckets": [
+    { "binding": "BLOB", "bucket_name": "yggoo" }
+  ]
+}

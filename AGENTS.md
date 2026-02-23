@@ -7,11 +7,11 @@ Yggoo is a Danish gift shop website. Content is in Danish.
 ## Tech Stack
 
 - **Framework**: Nuxt 4 (Vue 3, TypeScript)
-- **UI**: Nuxt UI v3 (`<UButton>`, `<UApp>`, etc.) with Tailwind CSS
-- **Content**: `@nuxt/content` with markdown sources (`content.config.ts`)
+- **UI**: Nuxt UI v3 (`<UButton>`, `<UApp>`, `<UTable>`, etc.) with Tailwind CSS
 - **Images**: `@nuxt/image`
 - **Security**: `nuxt-security` — basic auth protects `/admin` routes
-- **Database**: `better-sqlite3` (used by `@nuxt/content` internally)
+- **Database**: NuxtHub with Cloudflare D1 (SQLite locally, D1 in production) via Drizzle ORM
+- **Storage**: NuxtHub Blob (Cloudflare R2) for product image uploads
 
 ## Project Structure
 
@@ -20,24 +20,29 @@ app/
   app.vue              # Root component, wraps pages in <UApp>
   pages/
     index.vue          # Storefront — product cards with images and prices
-    admin/index.vue    # Admin dashboard — protected by HTTP Basic Auth
+    admin/index.vue    # Admin CRUD — protected by HTTP Basic Auth
   assets/
     css/main.css       # Tailwind + Nuxt UI imports
+server/
+  api/                 # API routes (products CRUD, image upload)
+  db/
+    schema.ts          # Drizzle ORM schema (products table)
+    migrations/        # Auto-generated D1 migrations
+  routes/uploads/      # Serves uploaded blob images
+  tasks/seed.ts        # Nitro task to seed product data
 public/
-  images/products/     # Product images (01.png–07.png, game1.png, ring1–5.png)
+  images/products/     # Static product images
 nuxt.config.ts         # Modules, security config, vite/devServer settings
-content.config.ts      # @nuxt/content collection definitions
 .ona/automations.yaml  # Dev environment tasks and services
 ```
 
 ## Conventions
 
 - Pages go in `app/pages/` (Nuxt 4 app directory structure).
-- Use Nuxt UI components (`UButton`, `UApp`, etc.) — do not use raw HTML buttons or custom component libraries.
+- **Nuxt UI components are mandatory for all layout and design.** Use `UTable`, `UModal`, `UButton`, `UInput`, `UFormField`, `UFileUpload`, `UDropdownMenu`, `UAvatar`, `UPopover`, `UContainer`, etc. Do not use raw HTML elements (e.g. `<table>`, `<button>`, `<input>`) or custom component libraries when a Nuxt UI equivalent exists. Any deviation from this rule must be explicitly requested by the user.
 - Styling uses Tailwind utility classes inline. The only CSS file is `app/assets/css/main.css` which imports Tailwind and Nuxt UI.
-- Product images are static files in `public/images/products/`.
+- Legacy product images are static files in `public/images/products/`. New uploads go to R2 blob storage and are served via `/uploads/`.
 - No layouts directory exists; `app.vue` serves as the single layout.
-- No composables, plugins, or server routes exist yet.
 
 ## Configuration
 

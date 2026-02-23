@@ -4,12 +4,18 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
+    '@nuxthub/core',
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
     'nuxt-security'
   ],
   css: ['~/assets/css/main.css'],
+
+  hub: {
+    db: 'sqlite',
+    blob: true
+  },
 
   security: {
     basicAuth: {
@@ -18,9 +24,12 @@ export default defineNuxtConfig({
       pass: 'admin',
       message: 'Yggoo Admin',
       include: ['/admin', '/admin/**']
+    },
+    requestSizeLimiter: {
+      maxUploadFileRequestInBytes: 10485760
     }
   },
-  
+
   vite: {
     server: {
       allowedHosts: 'all',
@@ -29,7 +38,13 @@ export default defineNuxtConfig({
       }
     }
   },
-  
+
+  nitro: {
+    experimental: {
+      tasks: true
+    }
+  },
+
   devServer: {
     host: '0.0.0.0'
   }
