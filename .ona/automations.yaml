@@ -1,0 +1,18 @@
+tasks:
+  installDeps:
+    name: Install dependencies
+    description: Install npm dependencies for the Nuxt app.
+    command: |
+      npm install
+    triggeredBy:
+      - postDevcontainerStart
+
+services:
+  dev-server:
+    name: Dev Server
+    description: Nuxt development server.
+    commands:
+      start: |
+        npm run dev
+      ready: |
+        curl -f http://localhost:3000

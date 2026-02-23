@@ -1,75 +1,14 @@
-# Nuxt Minimal Starter
+# Yggoo
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Yggoo — **Ypperlige Gode Gaver Omsorgsfuldt Opfundet** — is a small Danish online gift shop selling handmade items at affordable prices. The product catalog includes rings, games, and assorted crafts, priced between 5–69 kr. Orders and payments are handled directly through Hedvig (hedvig@yggoo.dk).
 
-## Setup
+The site is built with Nuxt 4, styled with Nuxt UI and Tailwind CSS, and protected by nuxt-security. An admin panel at `/admin` is gated behind HTTP Basic Auth.
 
-Make sure to install dependencies:
+## Development
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Admin credentials default to `admin` / `admin` (configured in `nuxt.config.ts`).

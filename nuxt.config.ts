@@ -7,12 +7,24 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxt/eslint',
     '@nuxt/image',
-    '@nuxt/ui'
+    '@nuxt/ui',
+    'nuxt-security'
   ],
   css: ['~/assets/css/main.css'],
+
+  security: {
+    basicAuth: {
+      enabled: true,
+      name: 'admin',
+      pass: 'admin',
+      message: 'Yggoo Admin',
+      include: ['/admin', '/admin/**']
+    }
+  },
   
   vite: {
     server: {
+      allowedHosts: 'all',
       hmr: {
         clientPort: 443
       }
