@@ -5,6 +5,8 @@ pages_build_output_dir = "dist"
 binding = "DB"
 database_name = "yggoo"
 database_id = "34f75d17-eafa-4bb1-a6a0-caa30cc751f5"
+migrations_table = "_hub_migrations"
+migrations_dir = "db/migrations/sqlite"
 
 [[r2_buckets]]
 binding = "BLOB"

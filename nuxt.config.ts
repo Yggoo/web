@@ -18,6 +18,11 @@ export default defineNuxtConfig({
   },
 
   security: {
+    headers: {
+      contentSecurityPolicy: {
+        'img-src': ["'self'", 'data:', 'blob:'],
+      },
+    },
     basicAuth: {
       enabled: true,
       name: 'admin',
@@ -40,6 +45,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    preset: 'cloudflare-pages',
     experimental: {
       tasks: true
     }
