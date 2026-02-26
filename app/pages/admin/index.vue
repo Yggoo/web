@@ -1,9 +1,9 @@
 <template>
-  <div class="min-h-screen bg-(--ui-bg-muted)">
-    <header class="bg-(--ui-bg-inverted) text-(--ui-text-inverted) py-6">
+  <div class="min-h-screen bg-(--ui-bg)">
+    <header class="bg-(--ui-color-primary-50) py-6">
       <UContainer class="flex items-center justify-between">
-        <h1 class="text-2xl font-bold">Yggoo Admin</h1>
-        <UButton to="/" variant="outline" color="neutral">Tilbage til butik</UButton>
+        <h1 class="text-2xl font-bold text-(--ui-color-primary-700)">🐣 Yggoo Admin</h1>
+        <UButton to="/" variant="soft" color="secondary">Tilbage til butik</UButton>
       </UContainer>
     </header>
 
