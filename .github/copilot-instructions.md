@@ -60,7 +60,7 @@ nuxt.config.ts
 
 - Legacy images: static files under `public/images/products/`, referenced as `/images/products/<file>`.
 - New uploads: stored in R2 blob, served via `/uploads/<pathname>`.
-- Always use `<NuxtImg>` (from `@nuxt/image`) instead of `<img>`.
+- Prefer `<NuxtImg>` (from `@nuxt/image`) instead of `<img>` for regular images (e.g. static paths or `/uploads`), but plain `<img>` is acceptable for blob/object URL previews or in cases where `<NuxtImg>` cannot be used.
 
 ### Content Language
 
