@@ -43,7 +43,7 @@
 
           <UFormField label="Billede">
             <div v-if="imagePreview || form.image" class="mb-2">
-              <img
+              <NuxtImg
                 :src="imagePreview || form.image"
                 alt="Preview"
                 class="h-16 w-16 rounded-full object-cover"
