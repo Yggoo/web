@@ -1,5 +1,5 @@
-import { db, schema } from '@nuxthub/db'
+import { db, schema } from "@nuxthub/db";
 
 export default defineEventHandler(async () => {
-  return db.select().from(schema.products)
-})
+  return db.select().from(schema.products);
+});

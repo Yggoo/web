@@ -1,26 +1,25 @@
-
 {
-    "name": "Ona",
-    "build": {
-        "context": ".",
-        "dockerfile": "Dockerfile"
+  "name": "Ona",
+  "build": {
+    "context": ".",
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker": {
+      "moby": false
     },
-    "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker": {
-            "moby": false
-        },
-        "ghcr.io/devcontainers/features/node": {
-            "nodeGypDependencies": true,
-            "version": "lts",
-            "nvmVersion": "latest"
-        },
-        "ghcr.io/devcontainers/features/github-cli": {}
+    "ghcr.io/devcontainers/features/node": {
+      "nodeGypDependencies": true,
+      "version": "20.19.0",
+      "nvmVersion": "latest"
     },
-    "forwardPorts": [3000],
-    "portsAttributes": {
-        "3000": {
-            "label": "Nuxt Dev Server",
-            "onAutoForward": "notify"
-        }
+    "ghcr.io/devcontainers/features/github-cli": {}
+  },
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Nuxt Dev Server",
+      "onAutoForward": "notify"
     }
+  }
 }

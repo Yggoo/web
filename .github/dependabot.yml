@@ -1,0 +1,32 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 10
+    groups:
+      nuxt:
+        patterns:
+          - nuxt
+          - "@nuxt/*"
+          - "@nuxthub/*"
+      drizzle:
+        patterns:
+          - drizzle-orm
+          - drizzle-kit
+      vue:
+        patterns:
+          - vue
+          - vue-router
+    labels:
+      - dependencies
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    labels:
+      - dependencies

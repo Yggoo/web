@@ -1,11 +1,12 @@
-import { eq } from 'drizzle-orm'
-import { db, schema } from '@nuxthub/db'
+import { eq } from "drizzle-orm";
+import { db, schema } from "@nuxthub/db";
 
 export default defineEventHandler(async (event) => {
-  const id = Number(getRouterParam(event, 'id'))
-  const body = await readBody(event)
+  const id = Number(getRouterParam(event, "id"));
+  const body = await readBody(event);
 
-  const result = await db.update(schema.products)
+  const result = await db
+    .update(schema.products)
     .set({
       name: body.name,
       description: body.description,
@@ -13,7 +14,7 @@ export default defineEventHandler(async (event) => {
       image: body.image,
     })
     .where(eq(schema.products.id, id))
-    .returning()
+    .returning();
 
-  return result[0]
-})
+  return result[0];
+});

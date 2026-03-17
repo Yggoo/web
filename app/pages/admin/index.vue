@@ -26,7 +26,7 @@
       <template #content>
         <div class="p-6 space-y-4">
           <h3 class="text-lg font-semibold">
-            {{ editing ? 'Rediger produkt' : 'Tilføj produkt' }}
+            {{ editing ? "Rediger produkt" : "Tilføj produkt" }}
           </h3>
 
           <UFormField label="Navn">
@@ -43,7 +43,11 @@
 
           <UFormField label="Billede">
             <div v-if="imagePreview || form.image" class="mb-2">
-              <img :src="imagePreview || form.image" alt="Preview" class="h-16 w-16 rounded-full object-cover" />
+              <NuxtImg
+                :src="imagePreview || form.image"
+                alt="Preview"
+                class="h-16 w-16 rounded-full object-cover"
+              />
             </div>
             <input
               ref="fileInputRef"
@@ -59,7 +63,7 @@
           <div class="flex justify-end gap-2 pt-2">
             <UButton variant="ghost" color="neutral" @click="formOpen = false">Annuller</UButton>
             <UButton :loading="saving" @click="saveProduct">
-              {{ editing ? 'Gem' : 'Opret' }}
+              {{ editing ? "Gem" : "Opret" }}
             </UButton>
           </div>
         </div>
@@ -72,7 +76,8 @@
         <div class="p-6">
           <h3 class="text-lg font-semibold mb-2">Slet produkt</h3>
           <p class="text-(--ui-text-muted) mb-6">
-            Er du sikker på, at du vil slette <strong>{{ deleteTarget?.name }}</strong>?
+            Er du sikker på, at du vil slette <strong>{{ deleteTarget?.name }}</strong
+            >?
           </p>
           <div class="flex justify-end gap-2">
             <UButton variant="ghost" color="neutral" @click="deleteOpen = false">Annuller</UButton>
@@ -85,181 +90,196 @@
 </template>
 
 <script setup lang="ts">
-import { h, resolveComponent } from 'vue'
-import type { TableColumn } from '@nuxt/ui'
+import { h, resolveComponent } from "vue";
+import type { TableColumn } from "@nuxt/ui";
 
-const UButton = resolveComponent('UButton')
-const UDropdownMenu = resolveComponent('UDropdownMenu')
-const UPopover = resolveComponent('UPopover')
+const UButton = resolveComponent("UButton");
+const UDropdownMenu = resolveComponent("UDropdownMenu");
+const UPopover = resolveComponent("UPopover");
 
 interface Product {
-  id: number
-  name: string
-  description: string
-  price: number
-  image: string
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
 }
 
-const { data: products, refresh, status } = await useFetch<Product[]>('/api/products')
+const { data: products, refresh, status } = await useFetch<Product[]>("/api/products");
 
 const columns: TableColumn<Product>[] = [
   {
-    accessorKey: 'image',
-    header: 'Billede',
+    accessorKey: "image",
+    header: "Billede",
     cell: ({ row }) => {
-      return h(UPopover, {
-        mode: 'hover',
-      }, {
-        default: () => h('img', {
-          src: row.original.image,
-          alt: row.original.name,
-          class: 'h-10 w-10 rounded-full object-cover cursor-pointer',
-        }),
-        content: () => h('img', {
-          src: row.original.image,
-          alt: row.original.name,
-          class: 'w-64 h-64 object-contain rounded',
-        }),
-      })
+      return h(
+        UPopover,
+        {
+          mode: "hover",
+        },
+        {
+          default: () =>
+            h("img", {
+              src: row.original.image,
+              alt: row.original.name,
+              class: "h-10 w-10 rounded-full object-cover cursor-pointer",
+            }),
+          content: () =>
+            h("img", {
+              src: row.original.image,
+              alt: row.original.name,
+              class: "w-64 h-64 object-contain rounded",
+            }),
+        },
+      );
     },
   },
   {
-    accessorKey: 'name',
-    header: 'Navn',
+    accessorKey: "name",
+    header: "Navn",
   },
   {
-    accessorKey: 'description',
-    header: 'Beskrivelse',
+    accessorKey: "description",
+    header: "Beskrivelse",
     meta: {
       class: {
-        td: 'max-w-xs truncate text-(--ui-text-muted)',
+        td: "max-w-xs truncate text-(--ui-text-muted)",
       },
     },
   },
   {
-    accessorKey: 'price',
-    header: 'Pris',
+    accessorKey: "price",
+    header: "Pris",
     cell: ({ row }) => `${row.original.price} kr`,
   },
   {
-    id: 'actions',
-    header: '',
+    id: "actions",
+    header: "",
     meta: {
       class: {
-        td: 'text-right',
+        td: "text-right",
       },
     },
     cell: ({ row }) => {
       const items = [
-        [{
-          label: 'Rediger',
-          icon: 'i-lucide-pencil',
-          onSelect: () => openEdit(row.original),
-        }],
-        [{
-          label: 'Slet',
-          icon: 'i-lucide-trash',
-          color: 'error' as const,
-          onSelect: () => confirmDelete(row.original),
-        }],
-      ]
+        [
+          {
+            label: "Rediger",
+            icon: "i-lucide-pencil",
+            onSelect: () => openEdit(row.original),
+          },
+        ],
+        [
+          {
+            label: "Slet",
+            icon: "i-lucide-trash",
+            color: "error" as const,
+            onSelect: () => confirmDelete(row.original),
+          },
+        ],
+      ];
 
-      return h('div', { class: 'flex justify-end' }, [
-        h(UDropdownMenu, {
-          items,
-        }, {
-          default: () => h(UButton, {
-            icon: 'i-lucide-ellipsis-vertical',
-            variant: 'ghost',
-            color: 'neutral',
-          }),
-        }),
-      ])
+      return h("div", { class: "flex justify-end" }, [
+        h(
+          UDropdownMenu,
+          {
+            items,
+          },
+          {
+            default: () =>
+              h(UButton, {
+                icon: "i-lucide-ellipsis-vertical",
+                variant: "ghost",
+                color: "neutral",
+              }),
+          },
+        ),
+      ]);
     },
   },
-]
+];
 
-const formOpen = ref(false)
-const editing = ref<Product | null>(null)
-const saving = ref(false)
+const formOpen = ref(false);
+const editing = ref<Product | null>(null);
+const saving = ref(false);
 const form = reactive({
-  name: '',
-  description: '',
+  name: "",
+  description: "",
   price: 0,
-  image: '',
-})
+  image: "",
+});
 
-const fileInputRef = ref<HTMLInputElement | null>(null)
-const pendingFile = ref<File | null>(null)
-const imagePreview = ref('')
-const uploadError = ref('')
+const fileInputRef = ref<HTMLInputElement | null>(null);
+const pendingFile = ref<File | null>(null);
+const imagePreview = ref("");
+const uploadError = ref("");
 
-const deleteOpen = ref(false)
-const deleteTarget = ref<Product | null>(null)
-const deleting = ref(false)
+const deleteOpen = ref(false);
+const deleteTarget = ref<Product | null>(null);
+const deleting = ref(false);
 
 function resetForm() {
-  form.name = ''
-  form.description = ''
-  form.price = 0
-  form.image = ''
-  pendingFile.value = null
-  imagePreview.value = ''
-  uploadError.value = ''
-  if (fileInputRef.value) fileInputRef.value.value = ''
+  form.name = "";
+  form.description = "";
+  form.price = 0;
+  form.image = "";
+  pendingFile.value = null;
+  imagePreview.value = "";
+  uploadError.value = "";
+  if (fileInputRef.value) fileInputRef.value.value = "";
 }
 
 function onFileSelect(event: Event) {
-  const input = event.target as HTMLInputElement
-  const file = input.files?.[0]
+  const input = event.target as HTMLInputElement;
+  const file = input.files?.[0];
   if (file) {
-    pendingFile.value = file
-    imagePreview.value = URL.createObjectURL(file)
+    pendingFile.value = file;
+    imagePreview.value = URL.createObjectURL(file);
   }
 }
 
 function openCreate() {
-  editing.value = null
-  resetForm()
-  formOpen.value = true
+  editing.value = null;
+  resetForm();
+  formOpen.value = true;
 }
 
 function openEdit(product: Product) {
-  editing.value = product
-  resetForm()
+  editing.value = product;
+  resetForm();
   Object.assign(form, {
     name: product.name,
     description: product.description,
     price: product.price,
     image: product.image,
-  })
-  formOpen.value = true
+  });
+  formOpen.value = true;
 }
 
 async function uploadImage(): Promise<string | null> {
-  if (!pendingFile.value) return null
+  if (!pendingFile.value) return null;
 
-  const body = new FormData()
-  body.append('files', pendingFile.value)
+  const body = new FormData();
+  body.append("files", pendingFile.value);
 
-  const result = await $fetch<{ pathname: string }[]>('/api/upload', {
-    method: 'POST',
+  const result = await $fetch<{ pathname: string }[]>("/api/upload", {
+    method: "POST",
     body,
-  })
+  });
 
-  return `/uploads/${result[0].pathname}`
+  return `/uploads/${result[0].pathname}`;
 }
 
 async function saveProduct() {
-  saving.value = true
-  uploadError.value = ''
+  saving.value = true;
+  uploadError.value = "";
   try {
-    const uploadedPath = await uploadImage()
-    const imageUrl = uploadedPath || form.image
+    const uploadedPath = await uploadImage();
+    const imageUrl = uploadedPath || form.image;
 
     if (!imageUrl) {
-      uploadError.value = 'Vælg venligst et billede'
-      return
+      uploadError.value = "Vælg venligst et billede";
+      return;
     }
 
     const body = {
@@ -267,44 +287,44 @@ async function saveProduct() {
       description: form.description,
       price: Number(form.price),
       image: imageUrl,
-    }
+    };
 
     if (editing.value) {
       await $fetch(`/api/products/${editing.value.id}`, {
-        method: 'PUT',
+        method: "PUT",
         body,
-      })
+      });
     } else {
-      await $fetch('/api/products', {
-        method: 'POST',
+      await $fetch("/api/products", {
+        method: "POST",
         body,
-      })
+      });
     }
-    formOpen.value = false
-    await refresh()
+    formOpen.value = false;
+    await refresh();
   } finally {
-    saving.value = false
+    saving.value = false;
   }
 }
 
 function confirmDelete(product: Product) {
-  deleteTarget.value = product
-  deleteOpen.value = true
+  deleteTarget.value = product;
+  deleteOpen.value = true;
 }
 
 async function deleteProduct() {
-  if (!deleteTarget.value) return
-  deleting.value = true
+  if (!deleteTarget.value) return;
+  deleting.value = true;
   try {
-    if (deleteTarget.value.image.startsWith('/uploads/')) {
-      const pathname = deleteTarget.value.image.replace('/uploads/', '')
-      await $fetch(`/api/upload/${pathname}`, { method: 'DELETE' }).catch(() => {})
+    if (deleteTarget.value.image.startsWith("/uploads/")) {
+      const pathname = deleteTarget.value.image.replace("/uploads/", "");
+      await $fetch(`/api/upload/${pathname}`, { method: "DELETE" }).catch(() => {});
     }
-    await $fetch(`/api/products/${deleteTarget.value.id}`, { method: 'DELETE' })
-    deleteOpen.value = false
-    await refresh()
+    await $fetch(`/api/products/${deleteTarget.value.id}`, { method: "DELETE" });
+    deleteOpen.value = false;
+    await refresh();
   } finally {
-    deleting.value = false
+    deleting.value = false;
   }
 }
 </script>
