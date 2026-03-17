@@ -31,7 +31,7 @@
             :key="product.id"
             class="hover:shadow-xl hover:scale-105 transition-all duration-300 overflow-hidden"
           >
-            <img
+            <NuxtImg
               :src="product.image"
               :alt="product.name"
               class="rounded-lg mb-4 w-full aspect-square object-cover"
