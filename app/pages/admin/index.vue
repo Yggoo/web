@@ -2,7 +2,7 @@
   <UDashboardGroup>
     <UDashboardPanel id="products">
       <template #header>
-        <UDashboardNavbar title="🐣 Yggoo Admin" :toggle="false">
+        <UDashboardNavbar title="🍂 Yggoo Admin" :toggle="false">
           <template #right>
             <UButton
               label="Tilbage til butik"
@@ -20,7 +20,12 @@
         <UContainer>
           <UTable :data="products ?? []" :columns="columns" :loading="status === 'pending'">
             <template #image-cell="{ row }">
-              <UAvatar :src="row.original.image" :alt="row.original.name" size="xl" />
+              <UAvatar
+                :src="row.original.image"
+                :alt="row.original.name"
+                size="xl"
+                provider="none"
+              />
             </template>
 
             <template #price-cell="{ row }">
