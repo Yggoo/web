@@ -6,6 +6,10 @@ export default defineNuxtConfig({
   modules: ["@nuxthub/core", "@nuxt/eslint", "@nuxt/image", "@nuxt/ui", "nuxt-security"],
   css: ["~/assets/css/main.css"],
 
+  image: {
+    none: {},
+  },
+
   hub: {
     db: "sqlite",
     blob: true,
