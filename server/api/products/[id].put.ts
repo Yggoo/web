@@ -1,9 +1,10 @@
 import { eq } from "drizzle-orm";
 import { db, schema } from "@nuxthub/db";
+import { defineEventHandler, getRouterParam, readValidatedBody } from "nuxt/server";
 
 export default defineEventHandler(async (event) => {
   const id = Number(getRouterParam(event, "id"));
-  const body = await readBody(event);
+  const body = await readValidatedBody(event, validateProductInput);
 
   const result = await db
     .update(schema.products)
