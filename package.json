@@ -12,7 +12,7 @@
     "lint:fix": "oxlint --fix",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "mdlint": "markdownlint-cli2 AGENTS.md README.md '.github/**/*.md'"
+    "mdlint": "oxfmt --check AGENTS.md README.md '.github/**/*.md'"
   },
   "dependencies": {
     "@libsql/client": "^0.18.0",
@@ -31,7 +31,6 @@
     "vue-router": "^5.4.0"
   },
   "devDependencies": {
-    "markdownlint-cli2": "^0.23.3",
     "oxfmt": "^0.72.0",
     "oxlint": "^1.87.0",
     "wrangler": "^4.149.0"

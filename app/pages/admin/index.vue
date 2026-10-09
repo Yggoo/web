@@ -1,101 +1,144 @@
 <template>
-  <div class="min-h-screen bg-(--ui-bg)">
-    <header class="bg-(--ui-color-primary-50) py-6">
-      <UContainer class="flex items-center justify-between">
-        <h1 class="text-2xl font-bold text-(--ui-color-primary-700)">🐣 Yggoo Admin</h1>
-        <UButton to="/" variant="soft" color="secondary">Tilbage til butik</UButton>
-      </UContainer>
-    </header>
+  <UDashboardGroup>
+    <UDashboardPanel id="products">
+      <template #header>
+        <UDashboardNavbar title="🐣 Yggoo Admin" :toggle="false">
+          <template #right>
+            <UButton
+              label="Tilbage til butik"
+              icon="i-lucide-store"
+              to="/"
+              color="neutral"
+              variant="ghost"
+            />
+            <UButton label="Tilføj produkt" icon="i-lucide-plus" @click="openCreate" />
+          </template>
+        </UDashboardNavbar>
+      </template>
 
-    <UContainer class="py-8">
-      <div class="flex items-center justify-between mb-4">
-        <h2 class="text-xl font-semibold">Produkter</h2>
-        <UButton icon="i-lucide-plus" @click="openCreate">Tilføj produkt</UButton>
-      </div>
+      <template #body>
+        <UContainer>
+          <UTable :data="products ?? []" :columns="columns" :loading="status === 'pending'">
+            <template #image-cell="{ row }">
+              <UAvatar :src="row.original.image" :alt="row.original.name" size="xl" />
+            </template>
 
-      <UTable
-        :data="products ?? []"
-        :columns="columns"
-        :loading="status === 'pending'"
-        class="w-full"
-      />
-    </UContainer>
+            <template #price-cell="{ row }">
+              <UBadge :label="`${row.original.price} kr`" color="secondary" variant="soft" />
+            </template>
 
-    <!-- Create / Edit Modal -->
-    <UModal v-model:open="formOpen">
-      <template #content>
-        <div class="p-6 space-y-4">
-          <h3 class="text-lg font-semibold">
-            {{ editing ? "Rediger produkt" : "Tilføj produkt" }}
-          </h3>
+            <template #actions-cell="{ row }">
+              <UDropdownMenu :items="getRowActions(row.original)">
+                <UButton
+                  icon="i-lucide-ellipsis-vertical"
+                  variant="ghost"
+                  color="neutral"
+                  aria-label="Produkthandlinger"
+                />
+              </UDropdownMenu>
+            </template>
 
-          <UFormField label="Navn">
-            <UInput v-model="form.name" placeholder="Produktnavn" class="w-full" />
-          </UFormField>
-
-          <UFormField label="Beskrivelse">
-            <UTextarea v-model="form.description" placeholder="Kort beskrivelse" class="w-full" />
-          </UFormField>
-
-          <UFormField label="Pris (kr)">
-            <UInput v-model="form.price" type="number" placeholder="0" class="w-full" />
-          </UFormField>
-
-          <UFormField label="Billede">
-            <div v-if="imagePreview || form.image" class="mb-2">
-              <NuxtImg
-                :src="imagePreview || form.image"
-                alt="Preview"
-                class="h-16 w-16 rounded-full object-cover"
+            <template #empty>
+              <UEmpty
+                icon="i-lucide-package-open"
+                title="Ingen produkter"
+                description="Tilføj det første produkt for at komme i gang."
+                :actions="[
+                  {
+                    label: 'Tilføj produkt',
+                    icon: 'i-lucide-plus',
+                    onClick: openCreate,
+                  },
+                ]"
               />
-            </div>
-            <input
-              ref="fileInputRef"
-              type="file"
-              accept="image/jpeg,image/png,image/webp,image/gif"
-              class="block w-full text-sm text-(--ui-text-muted) file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-(--ui-bg-elevated) file:text-(--ui-text) hover:file:bg-(--ui-bg-accented) cursor-pointer"
-              @change="onFileSelect"
+            </template>
+          </UTable>
+        </UContainer>
+      </template>
+    </UDashboardPanel>
+
+    <UModal
+      v-model:open="formOpen"
+      :title="editing ? 'Rediger produkt' : 'Tilføj produkt'"
+      description="Udfyld produktets oplysninger."
+      :ui="{ footer: 'justify-end' }"
+    >
+      <template #body>
+        <UForm
+          id="product-form"
+          :state="form"
+          :validate="validateProduct"
+          class="space-y-4"
+          @submit="saveProduct"
+        >
+          <UFormField name="name" label="Navn" required>
+            <UInput v-model="form.name" placeholder="Produktnavn" />
+          </UFormField>
+
+          <UFormField name="description" label="Beskrivelse">
+            <UTextarea
+              v-model="form.description"
+              placeholder="Kort beskrivelse"
+              autoresize
+              :maxrows="6"
             />
           </UFormField>
 
-          <p v-if="uploadError" class="text-sm text-(--ui-text-error)">{{ uploadError }}</p>
+          <UFormField name="price" label="Pris (kr)" required>
+            <UInputNumber v-model="form.price" :min="0" :step="1" placeholder="0" />
+          </UFormField>
 
-          <div class="flex justify-end gap-2 pt-2">
-            <UButton variant="ghost" color="neutral" @click="formOpen = false">Annuller</UButton>
-            <UButton :loading="saving" @click="saveProduct">
-              {{ editing ? "Gem" : "Opret" }}
-            </UButton>
-          </div>
-        </div>
+          <UFormField
+            name="image"
+            label="Billede"
+            description="JPEG, PNG, WebP eller GIF. Maks. 10 MB."
+            required
+          >
+            <UFileUpload
+              v-model="pendingFile"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              label="Vælg eller slip et produktbillede"
+              description="Billedet bliver vist som produktets primære billede."
+            />
+          </UFormField>
+
+          <UAlert
+            v-if="formError"
+            :description="formError"
+            icon="i-lucide-circle-alert"
+            color="error"
+            variant="subtle"
+          />
+        </UForm>
+      </template>
+
+      <template #footer="{ close }">
+        <UButton label="Annuller" variant="outline" color="neutral" @click="close" />
+        <UButton
+          :label="editing ? 'Gem' : 'Opret'"
+          type="submit"
+          form="product-form"
+          :loading="saving"
+        />
       </template>
     </UModal>
 
-    <!-- Delete Confirmation Modal -->
-    <UModal v-model:open="deleteOpen">
-      <template #content>
-        <div class="p-6">
-          <h3 class="text-lg font-semibold mb-2">Slet produkt</h3>
-          <p class="text-(--ui-text-muted) mb-6">
-            Er du sikker på, at du vil slette <strong>{{ deleteTarget?.name }}</strong
-            >?
-          </p>
-          <div class="flex justify-end gap-2">
-            <UButton variant="ghost" color="neutral" @click="deleteOpen = false">Annuller</UButton>
-            <UButton color="error" :loading="deleting" @click="deleteProduct">Slet</UButton>
-          </div>
-        </div>
+    <UModal
+      v-model:open="deleteOpen"
+      title="Slet produkt"
+      :description="deleteDescription"
+      :ui="{ footer: 'justify-end' }"
+    >
+      <template #footer="{ close }">
+        <UButton label="Annuller" variant="outline" color="neutral" @click="close" />
+        <UButton label="Slet" color="error" :loading="deleting" @click="deleteProduct" />
       </template>
     </UModal>
-  </div>
+  </UDashboardGroup>
 </template>
 
 <script setup lang="ts">
-import { h, resolveComponent } from "vue";
-import type { TableColumn } from "@nuxt/ui";
-
-const UButton = resolveComponent("UButton");
-const UDropdownMenu = resolveComponent("UDropdownMenu");
-const UPopover = resolveComponent("UPopover");
+import type { DropdownMenuItem, FormError, TableColumn } from "@nuxt/ui";
 
 interface Product {
   id: number;
@@ -105,118 +148,82 @@ interface Product {
   image: string;
 }
 
+interface ProductForm {
+  name: string;
+  description: string;
+  price: number | null;
+  image: string;
+}
+
+const toast = useToast();
 const { data: products, refresh, status } = await useFetch<Product[]>("/api/products");
 
 const columns: TableColumn<Product>[] = [
-  {
-    accessorKey: "image",
-    header: "Billede",
-    cell: ({ row }) => {
-      return h(
-        UPopover,
-        {
-          mode: "hover",
-        },
-        {
-          default: () =>
-            h("img", {
-              src: row.original.image,
-              alt: row.original.name,
-              class: "h-10 w-10 rounded-full object-cover cursor-pointer",
-            }),
-          content: () =>
-            h("img", {
-              src: row.original.image,
-              alt: row.original.name,
-              class: "w-64 h-64 object-contain rounded",
-            }),
-        },
-      );
-    },
-  },
-  {
-    accessorKey: "name",
-    header: "Navn",
-  },
-  {
-    accessorKey: "description",
-    header: "Beskrivelse",
-    meta: {
-      class: {
-        td: "max-w-xs truncate text-(--ui-text-muted)",
-      },
-    },
-  },
-  {
-    accessorKey: "price",
-    header: "Pris",
-    cell: ({ row }) => `${row.original.price} kr`,
-  },
-  {
-    id: "actions",
-    header: "",
-    meta: {
-      class: {
-        td: "text-right",
-      },
-    },
-    cell: ({ row }) => {
-      const items = [
-        [
-          {
-            label: "Rediger",
-            icon: "i-lucide-pencil",
-            onSelect: () => openEdit(row.original),
-          },
-        ],
-        [
-          {
-            label: "Slet",
-            icon: "i-lucide-trash",
-            color: "error" as const,
-            onSelect: () => confirmDelete(row.original),
-          },
-        ],
-      ];
-
-      return h("div", { class: "flex justify-end" }, [
-        h(
-          UDropdownMenu,
-          {
-            items,
-          },
-          {
-            default: () =>
-              h(UButton, {
-                icon: "i-lucide-ellipsis-vertical",
-                variant: "ghost",
-                color: "neutral",
-              }),
-          },
-        ),
-      ]);
-    },
-  },
+  { accessorKey: "image", header: "Billede" },
+  { accessorKey: "name", header: "Navn" },
+  { accessorKey: "description", header: "Beskrivelse" },
+  { accessorKey: "price", header: "Pris" },
+  { id: "actions", header: "" },
 ];
 
 const formOpen = ref(false);
 const editing = ref<Product | null>(null);
 const saving = ref(false);
-const form = reactive({
+const form = reactive<ProductForm>({
   name: "",
   description: "",
   price: 0,
   image: "",
 });
-
-const fileInputRef = ref<HTMLInputElement | null>(null);
 const pendingFile = ref<File | null>(null);
-const imagePreview = ref("");
-const uploadError = ref("");
+const formError = ref("");
 
 const deleteOpen = ref(false);
 const deleteTarget = ref<Product | null>(null);
 const deleting = ref(false);
+const deleteDescription = computed(() =>
+  deleteTarget.value
+    ? `Er du sikker på, at du vil slette ${deleteTarget.value.name}?`
+    : "Er du sikker på, at du vil slette produktet?",
+);
+
+function getRowActions(product: Product): DropdownMenuItem[][] {
+  return [
+    [
+      {
+        label: "Rediger",
+        icon: "i-lucide-pencil",
+        onSelect: () => openEdit(product),
+      },
+    ],
+    [
+      {
+        label: "Slet",
+        icon: "i-lucide-trash",
+        color: "error",
+        onSelect: () => confirmDelete(product),
+      },
+    ],
+  ];
+}
+
+function validateProduct(state: ProductForm): FormError[] {
+  const errors: FormError[] = [];
+
+  if (!state.name.trim()) {
+    errors.push({ name: "name", message: "Angiv et produktnavn" });
+  }
+
+  if (state.price === null || !Number.isInteger(state.price) || state.price < 0) {
+    errors.push({ name: "price", message: "Prisen skal være et positivt heltal" });
+  }
+
+  if (!pendingFile.value && !state.image) {
+    errors.push({ name: "image", message: "Vælg et produktbillede" });
+  }
+
+  return errors;
+}
 
 function resetForm() {
   form.name = "";
@@ -224,18 +231,7 @@ function resetForm() {
   form.price = 0;
   form.image = "";
   pendingFile.value = null;
-  imagePreview.value = "";
-  uploadError.value = "";
-  if (fileInputRef.value) fileInputRef.value.value = "";
-}
-
-function onFileSelect(event: Event) {
-  const input = event.target as HTMLInputElement;
-  const file = input.files?.[0];
-  if (file) {
-    pendingFile.value = file;
-    imagePreview.value = URL.createObjectURL(file);
-  }
+  formError.value = "";
 }
 
 function openCreate() {
@@ -272,20 +268,15 @@ async function uploadImage(): Promise<string | null> {
 
 async function saveProduct() {
   saving.value = true;
-  uploadError.value = "";
+  formError.value = "";
+
   try {
     const uploadedPath = await uploadImage();
     const imageUrl = uploadedPath || form.image;
-
-    if (!imageUrl) {
-      uploadError.value = "Vælg venligst et billede";
-      return;
-    }
-
     const body = {
       name: form.name,
       description: form.description,
-      price: Number(form.price),
+      price: form.price ?? 0,
       image: imageUrl,
     };
 
@@ -300,14 +291,20 @@ async function saveProduct() {
         body,
       });
     }
+
     formOpen.value = false;
     await refresh();
+    toast.add({
+      title: editing.value ? "Produktet er opdateret" : "Produktet er oprettet",
+      color: "success",
+      icon: "i-lucide-circle-check",
+    });
   } catch (error) {
     const requestError = error as {
       data?: { message?: string };
       message?: string;
     };
-    uploadError.value =
+    formError.value =
       requestError.data?.message || requestError.message || "Kunne ikke gemme produktet";
   } finally {
     saving.value = false;
@@ -321,15 +318,22 @@ function confirmDelete(product: Product) {
 
 async function deleteProduct() {
   if (!deleteTarget.value) return;
+
   deleting.value = true;
   try {
     if (deleteTarget.value.image.startsWith("/uploads/")) {
       const pathname = deleteTarget.value.image.replace("/uploads/", "");
       await $fetch(`/api/upload/${pathname}`, { method: "DELETE" }).catch(() => {});
     }
+
     await $fetch(`/api/products/${deleteTarget.value.id}`, { method: "DELETE" });
     deleteOpen.value = false;
     await refresh();
+    toast.add({
+      title: "Produktet er slettet",
+      color: "success",
+      icon: "i-lucide-circle-check",
+    });
   } finally {
     deleting.value = false;
   }
