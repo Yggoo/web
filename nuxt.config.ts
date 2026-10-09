@@ -22,6 +22,7 @@ export default defineNuxtConfig({
       name: "admin",
       pass: "admin",
       message: "Yggoo Admin",
+      exclude: ["/"],
       include: ["/admin", "/admin/**"],
     },
     requestSizeLimiter: {
@@ -31,7 +32,9 @@ export default defineNuxtConfig({
 
   vite: {
     server: {
-      allowedHosts: "all",
+      // Ona exposes the dev server through a generated hostname such as
+      // `3000--<environment-id>.gitpod.dev`, so the hostname is not stable.
+      allowedHosts: true,
       hmr: {
         clientPort: 443,
       },
