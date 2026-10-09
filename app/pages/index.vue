@@ -1,7 +1,7 @@
 <template>
   <UMain>
     <UPageHero
-      headline="🐣 Yggoo"
+      headline="🍂 Yggoo"
       title="Velkommen til Yggoo"
       description="Ypperlige Gode Gaver Omsorgsfuldt Opfundet!"
       orientation="horizontal"
@@ -55,7 +55,7 @@
 
   <UFooter>
     <template #left>
-      <UBadge :label="`© ${new Date().getFullYear()} Yggoo 🐰`" color="neutral" variant="subtle" />
+      <UBadge :label="`© ${new Date().getFullYear()} Yggoo 🍁`" color="neutral" variant="subtle" />
     </template>
   </UFooter>
 </template>
