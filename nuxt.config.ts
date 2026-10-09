@@ -35,7 +35,7 @@ export default defineNuxtConfig({
       // Ona exposes the dev server through a generated hostname such as
       // `3000--<environment-id>.gitpod.dev`, so the hostname is not stable.
       allowedHosts: true,
-      hmr: {
+      ws: {
         clientPort: 443,
       },
     },

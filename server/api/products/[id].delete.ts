@@ -1,5 +1,6 @@
 import { eq } from "drizzle-orm";
 import { db, schema } from "@nuxthub/db";
+import { defineEventHandler, getRouterParam } from "nuxt/server";
 
 export default defineEventHandler(async (event) => {
   const id = Number(getRouterParam(event, "id"));
