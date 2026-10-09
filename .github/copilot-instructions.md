@@ -15,7 +15,7 @@ Yggoo is a Danish gift shop website. All user-facing content is written in Danis
 
 ## Project Structure
 
-```
+```text
 app/
   app.vue              # Root component — wraps pages in <UApp>
   pages/

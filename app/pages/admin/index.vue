@@ -302,6 +302,13 @@ async function saveProduct() {
     }
     formOpen.value = false;
     await refresh();
+  } catch (error) {
+    const requestError = error as {
+      data?: { message?: string };
+      message?: string;
+    };
+    uploadError.value =
+      requestError.data?.message || requestError.message || "Kunne ikke gemme produktet";
   } finally {
     saving.value = false;
   }
