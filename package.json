@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "oxfmt": "^0.72.0",
-    "oxlint": "^1.87.0",
+    "oxlint": "^1.89.0",
     "wrangler": "^4.149.0"
   },
   "engines": {
